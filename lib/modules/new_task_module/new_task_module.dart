@@ -1,11 +1,13 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:flutter/material.dart';
 
-class NewTaskScreen extends StatelessWidget {
-  const NewTaskScreen({Key? key}) : super(key: key);
+class NewTaskModule extends StatelessWidget {
+  const NewTaskModule({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return const Center(
+    return Center(
       child: Text('New Task'),
     );
   }
