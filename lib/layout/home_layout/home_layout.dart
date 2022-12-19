@@ -43,7 +43,7 @@ class _HomeLayoutState extends State<HomeLayout> {
         onPressed: () async {
           createDataBase();
           getName('name is youssef').then(
-            (value) {
+                (value) {
               print('$value');
             },
           ).catchError((onError) {
@@ -91,17 +91,17 @@ Future<String> getName(String name) async {
 
 void createDataBase() async {
   var database = await openDatabase('todo.db', version: 1, onCreate: (
-    database,
-    version,
-  ) {
+      database,
+      version,
+      ) {
     print('database is created');
     database
         .execute(
-            // 1. (primary key) is thing auto generator when add to table
-            // 2. in sqflite no there String it's replace by Text
-            // 3. if you write text or TEXT isn't important because sqflite not case sensitive
-            // 4. you write title , title is name of field after you write type of field
-            'create table task (id INTEGER primary key ,title TEXT , date TEXT , time TEXT , status TEXT )')
+      // 1. (primary key) is thing auto generator when add to table
+      // 2. in sqflite no there String it's replace by Text
+      // 3. if you write text or TEXT isn't important because sqflite not case sensitive
+      // 4. you write title , title is name of field after you write type of field
+        'create table task (id INTEGER primary key ,title TEXT , date TEXT , time TEXT , status TEXT )')
         .then((value) {
       print('it\'s done');
     }).catchError((error) {
