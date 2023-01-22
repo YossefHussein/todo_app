@@ -13,7 +13,6 @@ Widget defaultFormField({
   @required TextInputType type,
   @required Widget prefixIcon,
   Function onTap,
-  bool isClickable = true,
   Widget suffixIcon,
   Color suffixIconColor,
   Color prefixIconColor,
@@ -26,7 +25,6 @@ Widget defaultFormField({
       onChanged: onChanged,
       obscureText: isPassword,
       onTap: onTap,
-      enabled: isClickable,
       decoration: InputDecoration(
         prefixIconColor: prefixIconColor,
         suffixIconColor: suffixIconColor,

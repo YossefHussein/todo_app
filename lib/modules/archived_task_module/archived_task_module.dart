@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class ArchivedTaskModule extends StatelessWidget {
-  const ArchivedTaskModule({Key? key}) : super(key: key);
+  const ArchivedTaskModule({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

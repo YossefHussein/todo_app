@@ -3,7 +3,7 @@
 import 'package:flutter/material.dart';
 
 class NewTaskModule extends StatelessWidget {
-  const NewTaskModule({Key? key}) : super(key: key);
+  const NewTaskModule({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
