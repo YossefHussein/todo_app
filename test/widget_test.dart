@@ -13,7 +13,7 @@ import 'package:todo_app/layout/home_layout/home_layout.dart';
 void main() {
   testWidgets('Counter increments smoke test', (WidgetTester tester) async {
     // Build our app and trigger a frame.
-    await tester.pumpWidget(const HomeLayout());
+    await tester.pumpWidget(HomeLayout());
 
     // Verify that our counter starts at 0.
     expect(find.text('0'), findsOneWidget);
