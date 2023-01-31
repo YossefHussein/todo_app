@@ -19,7 +19,7 @@ Widget buildTaskItem(index) {
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
             Text(
-              "Task title $index",
+              "Task title ${index + 1}",
             ),
             Text(
               "2 april 2023",
