@@ -1,7 +1,7 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
-import 'package:todo_app/shared/widget/build_task_item/build_task_item.dart';
+import 'package:todo_app/shared/widget/build_task_item.dart';
 
 class NewTaskModule extends StatelessWidget {
   const NewTaskModule({Key key}) : super(key: key);

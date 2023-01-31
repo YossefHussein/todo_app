@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:sqflite/sqflite.dart';
-import '../../modules/archived_task_module.dart';
-import '../../modules/done_task_module.dart';
-import '../../modules/new_task_module.dart';
-import '../../shared/styles/color.dart';
-import '../../shared/styles/constant.dart';
-import '../../shared/widget/default_form_field.dart';
+import '../modules/archived_task_module.dart';
+import '../modules/done_task_module.dart';
+import '../modules/new_task_module.dart';
+import '../shared/styles/color.dart';
+import '../shared/styles/constant.dart';
+import '../shared/widget/default_form_field.dart';
 
 class HomeLayout extends StatefulWidget {
   const HomeLayout({Key key}) : super(key: key);
@@ -156,7 +156,7 @@ class _HomeLayoutState extends State<HomeLayout> {
                                           value.format(context).toString();
                                     });
                                   },
-                                  notShowKeyBoard: true,
+                                  disableKeyBoard: true,
                                   controller: timeController,
                                   type: TextInputType.datetime,
                                   prefixIcon: Icon(Icons.watch_later),
@@ -166,7 +166,7 @@ class _HomeLayoutState extends State<HomeLayout> {
                                 ),
                                 // this task date formField
                                 defaultFormField(
-                                  notShowKeyBoard: true,
+                                  disableKeyBoard: true,
                                   controller: dateController,
                                   label: 'date task',
                                   validMsg: (String value) {
