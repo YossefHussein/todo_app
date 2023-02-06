@@ -5,7 +5,7 @@ import '../shared/components/constant.dart';
 
 class NewTaskModule extends StatelessWidget {
   const NewTaskModule({Key key}) : super(key: key);
-/// this for new task
+// this for new task
   @override
   Widget build(BuildContext context) {
     return ListView.separated(
