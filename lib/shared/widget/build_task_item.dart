@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
 
-Widget buildTaskItem(index) {
+Widget buildTaskItem({int taskNumber, Map model}) {
   return Padding(
     padding: const EdgeInsets.all(8.0),
     child: Row(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      mainAxisAlignment: MainAxisAlignment.start,
       children: [
         CircleAvatar(
           radius: 40,
+          child: Text(
+            '${model['time']}',
+            style: TextStyle(color: Colors.white),
+          ),
           backgroundColor: Colors.purple,
         ),
         SizedBox(
@@ -16,13 +18,14 @@ Widget buildTaskItem(index) {
         ),
         Column(
           mainAxisSize: MainAxisSize.min,
-          mainAxisAlignment: MainAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              "Task title ${index + 1}",
+              '${taskNumber + 1}: ${model['title']}',
             ),
             Text(
-              "2 april 2023",
+              '${model['date']}',
               style: TextStyle(color: Colors.grey),
             ),
           ],
