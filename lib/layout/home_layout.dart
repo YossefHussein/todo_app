@@ -6,7 +6,7 @@ import '../modules/done_task_module.dart';
 import '../modules/new_task_module.dart';
 import '../shared/components/constant.dart';
 import '../shared/styles/color.dart';
-import '../shared/widget/default_form_field.dart';
+import '../shared/components/widget/default_form_field.dart';
 
 class HomeLayout extends StatefulWidget {
   const HomeLayout({Key key}) : super(key: key);
@@ -33,13 +33,13 @@ class _HomeLayoutState extends State<HomeLayout> {
     'ArchivedTask',
   ];
 
-  /// this is for make database and handling main operation
+  /// this is for make database and handling main operation from it
   Database database;
 
   @override
   void initState() {
     super.initState();
-    // this is to call the database
+    // this is to create the database
     createDatabase();
   }
 
@@ -50,7 +50,7 @@ class _HomeLayoutState extends State<HomeLayout> {
   var formKey = GlobalKey<FormState>();
 
   // to toggle between bottomSheet open or not
-  bool isBottomSheetShown;
+  bool isBottomSheetShown = false;
 
   // default fab icon and I toggle this  in bottomSheet
   IconData fabIcon = Icons.edit;
@@ -62,6 +62,7 @@ class _HomeLayoutState extends State<HomeLayout> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      // theme
       theme: ThemeData(
         useMaterial3: true,
         appBarTheme: AppBarTheme(
@@ -73,6 +74,8 @@ class _HomeLayoutState extends State<HomeLayout> {
         floatingActionButtonTheme: FloatingActionButtonThemeData(
           backgroundColor: pColor,
         ),
+        // bottomNavigationBarTheme: BottomNavigationBarThemeData(
+        // ),
         bottomSheetTheme: BottomSheetThemeData(
           backgroundColor: pBottomSheetColor,
           shape: RoundedRectangleBorder(
@@ -86,6 +89,7 @@ class _HomeLayoutState extends State<HomeLayout> {
           secondary: sColor,
         ),
       ),
+      // main app widgets
       home: Scaffold(
         key: scaffoldKey,
         appBar: AppBar(
@@ -226,6 +230,7 @@ class _HomeLayoutState extends State<HomeLayout> {
           type: BottomNavigationBarType.fixed,
           showSelectedLabels: true,
           currentIndex: currentIndex,
+          elevation: 20,
           onTap: (index) {
             setState(() {
               currentIndex = index;
@@ -300,6 +305,10 @@ class _HomeLayoutState extends State<HomeLayout> {
 
   // get data from database
   Future<List<Map>> getDataFromDatabase(database) async {
+    // 'SELECT' mean give me
+    // '*' all thing 
+    // 'FROM' mean from this 
+    // 'task' this our table
     return await database.rawQuery("SELECT * FROM task");
   }
 

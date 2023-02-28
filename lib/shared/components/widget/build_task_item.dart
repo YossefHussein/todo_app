@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:todo_app/shared/components/constant.dart';
 
 Widget buildTaskItem({int taskNumber, Map model}) {
   return Padding(
-    padding: const EdgeInsets.all(8.0),
+    padding: const EdgeInsets.all(pPadding),
     child: Row(
       children: [
         CircleAvatar(
@@ -13,9 +14,7 @@ Widget buildTaskItem({int taskNumber, Map model}) {
           ),
           backgroundColor: Colors.purple,
         ),
-        SizedBox(
-          width: 20,
-        ),
+        SizedBox(width: 20),
         Column(
           mainAxisSize: MainAxisSize.min,
           mainAxisAlignment: MainAxisAlignment.center,
