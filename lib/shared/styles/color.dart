@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-var pBottomSheetColor = Colors.purple[200];
-var pColor = Colors.purple[700];
-var sColor = Colors.purple[600];
+var pBottomSheetColor = Color(0xB3D8D8D8);
+var pColor = Colors.blue.shade800;
+var sColor = Colors.blue.shade700;
 var pColorTextAppBar = Colors.white;
