@@ -19,7 +19,7 @@ class ArchivedTaskModule extends StatelessWidget {
         var tasks = AppCubit.get(context).archivedTasks;
         return ConditionalBuilder(
           // if the tasks under zero see no tasks message
-          condition: tasks.length > 0,
+          condition: tasks.isNotEmpty,
           fallback: (context) => Center(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
