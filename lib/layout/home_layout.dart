@@ -9,16 +9,16 @@ import '../shared/components/constant.dart';
 import '../shared/components/components.dart';
 import '../shared/styles/color.dart';
 
+// ignore: must_be_immutable
 class HomeLayout extends StatelessWidget {
-  HomeLayout({super.key});
+  HomeLayout({Key? key}) : super(key: key);
+
   // this is for see bottomSheet
   // ScaffoldState
   var scaffoldKey = GlobalKey<ScaffoldState>();
-
   // this use for validation
   // 'FormState' this type of 'GlobalKey'
   var formKey = GlobalKey<FormState>();
-
   // controllers
   // this use for insert values o f controllers
   // to database of todo app
