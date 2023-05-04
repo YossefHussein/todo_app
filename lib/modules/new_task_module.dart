@@ -8,16 +8,17 @@ import '../shared/components/components.dart';
 
 class NewTaskModule extends StatelessWidget {
   const NewTaskModule({Key? key}) : super(key: key);
-  // this for new task
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<AppCubit, AppState>(
       listener: (context, state) {},
       builder: (context, state) {
-        var tasks = AppCubit.get(context).tasks;
+        // for see on doneTasks
+        var tasks = AppCubit.get(context).newTasks;
         return ConditionalBuilder(
-          condition: tasks.isEmpty,
-          builder: (context) => Center(
+          // if the tasks under zero see no tasks message
+          condition: tasks.isNotEmpty,
+          fallback: (context) => Center(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
@@ -28,31 +29,25 @@ class NewTaskModule extends StatelessWidget {
                   color: Colors.grey,
                 ),
                 Text(
-                  'Please add task form FAB button',
+                  'No Tasks Yet, Please Add Some Tasks',
                   style: TextStyle(
                     fontSize: 20,
                     color: Colors.grey,
                     fontStyle: FontStyle.normal,
                     fontWeight: FontWeight.bold,
                   ),
+                  textAlign: TextAlign.center,
                 )
               ],
             ),
           ),
-          fallback: (context) => ListView.separated(
+          builder: (context) => ListView.builder(
             itemBuilder: (context, index) => buildTaskItem(
               taskNumber: index,
+              // you see all task in newTasks by index
+              // index looping on all item in newTasks and add to screen
               model: tasks[index],
-            ),
-            separatorBuilder: (context, index) => Padding(
-              padding: const EdgeInsetsDirectional.only(
-                start: pPadding + 20,
-                end: pPadding + 20,
-              ),
-              child: Container(
-                height: 1,
-                color: Colors.grey,
-              ),
+              context: context,
             ),
             itemCount: tasks.length,
           ),

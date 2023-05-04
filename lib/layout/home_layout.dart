@@ -10,7 +10,7 @@ import '../shared/components/components.dart';
 import '../shared/styles/color.dart';
 
 class HomeLayout extends StatelessWidget {
-   HomeLayout({super.key});
+  HomeLayout({super.key});
   // this is for see bottomSheet
   // ScaffoldState
   var scaffoldKey = GlobalKey<ScaffoldState>();
@@ -44,7 +44,6 @@ class HomeLayout extends StatelessWidget {
               useMaterial3: true,
               appBarTheme: AppBarTheme(
                 centerTitle: true,
-                elevation: 10,
                 color: pColor,
                 foregroundColor: pColorTextAppBar,
               ),
@@ -53,9 +52,11 @@ class HomeLayout extends StatelessWidget {
               ),
               bottomSheetTheme: BottomSheetThemeData(
                 backgroundColor: pBottomSheetColor,
+                elevation: 20,
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.only(
                     topLeft: Radius.circular(pBorderRadius * 2),
+                    topRight: Radius.circular(pBorderRadius * 2),
                   ),
                 ),
               ),
@@ -86,7 +87,9 @@ class HomeLayout extends StatelessWidget {
               ),
               floatingActionButton: FloatingActionButton(
                 onPressed: () {
+                  // if bottom sheet shown from user
                   if (cubit.isBottomSheetShown) {
+                    // doing validation on defaultFormField
                     if (formKey.currentState!.validate()) {
                       cubit.insertToDatabase(
                         // give data from controller to database
@@ -98,104 +101,105 @@ class HomeLayout extends StatelessWidget {
                   } else {
                     scaffoldKey.currentState!
                         .showBottomSheet(
-                            (context) => Container(
-                                  color: Colors.white,
-                                  child: Padding(
-                                    padding: const EdgeInsets.all(20.0),
-                                    child: Form(
-                                      key: formKey,
-                                      child: Column(
-                                        mainAxisSize: MainAxisSize.min,
-                                        children: [
-                                          // this task title formField
-                                          defaultFormField(
-                                              controller: titleController,
-                                              type: TextInputType.text,
-                                              // this is validation
-                                              validMsg: (value) {
-                                                // if the formField empty see validation
-                                                if (value!.isEmpty) {
-                                                  return "Title Can't be Empty";
-                                                }
-                                                return null;
-                                              },
-                                              onTap: () {
-                                                print(
-                                                    timeController.toString());
-                                              },
-                                              label: "Task Title",
-                                              prefixIcon: Icon(Icons.title)),
-                                          SizedBox(
-                                            height: 20,
-                                          ),
-                                          // this task time formField
-                                          defaultFormField(
-                                            disableKeyBoard: true,
-                                            controller: timeController,
-                                            type: TextInputType.datetime,
-                                            validMsg: (value) {
-                                              if (value!.isEmpty) {
-                                                return "Time Can't be Empty";
-                                              }
-                                              return null;
-                                            },
-                                            onTap: () {
-                                              showTimePicker(
-                                                      context: context,
-                                                      initialTime:
-                                                          TimeOfDay.now())
-                                                  .then((value) {
-                                                timeController.text = value!
-                                                    .format(context)
-                                                    .toString();
-
-                                                print(value.format(context));
-                                              });
-                                            },
-                                            label: "Task Time",
-                                            prefixIcon:
-                                                Icon(Icons.watch_later_rounded),
-                                          ),
-                                          SizedBox(
-                                            height: 20,
-                                          ),
-                                          defaultFormField(
-                                            disableKeyBoard: true,
-                                            controller: dateController,
-                                            type: TextInputType.datetime,
-                                            validMsg: (value) {
-                                              if (value!.isEmpty) {
-                                                return "Date Can't be Empty";
-                                              }
-                                              return null;
-                                            },
-                                            onTap: () {
-                                              showDatePicker(
-                                                context: context,
-                                                initialDate: DateTime.now(),
-                                                firstDate: DateTime.now(),
-                                                lastDate: DateTime.parse(
-                                                    '2100-01-01'),
-                                              ).then((value) {
-                                                // equal the value getting from "showDatePicker" to timeController
-                                                dateController.text =
-                                                    DateFormat.yMMMEd()
-                                                        .format(value!);
-                                              }).catchError((error) {
-                                                print(
-                                                    'this is an ${error.toString()}');
-                                              });
-                                            },
-                                            label: "Task Date",
-                                            prefixIcon:
-                                                Icon(Icons.calendar_today),
-                                          )
-                                        ],
+                          (context) => SingleChildScrollView(
+                            child: Container(
+                              child: Padding(
+                                padding: const EdgeInsets.all(20.0),
+                                child: Form(
+                                  key: formKey,
+                                  child: Column(
+                                    mainAxisSize: MainAxisSize.min,
+                                    children: [
+                                      SizedBox(
+                                        height: 20,
                                       ),
-                                    ),
+                                      // this task title formField
+                                      defaultFormField(
+                                          controller: titleController,
+                                          type: TextInputType.text,
+                                          // this is validation
+                                          validMsg: (value) {
+                                            // if the formField empty see validation
+                                            if (value!.isEmpty) {
+                                              return "Title Can't be Empty";
+                                            }
+                                            return null;
+                                          },
+                                          onTap: () {
+                                            print(timeController.toString());
+                                          },
+                                          label: "Task Title",
+                                          prefixIcon: Icon(Icons.title)),
+                                      SizedBox(
+                                        height: 20,
+                                      ),
+                                      // this task time formField
+                                      defaultFormField(
+                                        disableKeyBoard: true,
+                                        controller: timeController,
+                                        type: TextInputType.datetime,
+                                        validMsg: (value) {
+                                          if (value!.isEmpty) {
+                                            return "Time Can't be Empty";
+                                          }
+                                          return null;
+                                        },
+                                        onTap: () {
+                                          showTimePicker(
+                                                  context: context,
+                                                  initialTime: TimeOfDay.now())
+                                              .then((value) {
+                                            timeController.text = value!
+                                                .format(context)
+                                                .toString();
+
+                                            print(value.format(context));
+                                          });
+                                        },
+                                        label: "Task Time",
+                                        prefixIcon:
+                                            Icon(Icons.watch_later_rounded),
+                                      ),
+                                      SizedBox(
+                                        height: 20,
+                                      ),
+                                      defaultFormField(
+                                        disableKeyBoard: true,
+                                        controller: dateController,
+                                        type: TextInputType.datetime,
+                                        validMsg: (value) {
+                                          if (value!.isEmpty) {
+                                            return "Date Can't be Empty";
+                                          }
+                                          return null;
+                                        },
+                                        onTap: () {
+                                          showDatePicker(
+                                            context: context,
+                                            initialDate: DateTime.now(),
+                                            firstDate: DateTime.now(),
+                                            lastDate:
+                                                DateTime.parse('2100-01-01'),
+                                          ).then((value) {
+                                            // equal the value getting from "showDatePicker" to timeController
+                                            dateController.text =
+                                                DateFormat.yMMMEd()
+                                                    .format(value!);
+                                          }).catchError((error) {
+                                            print(
+                                                'this is an ${error.toString()}');
+                                          });
+                                        },
+                                        label: "Task Date",
+                                        prefixIcon: Icon(Icons.calendar_today),
+                                      )
+                                    ],
                                   ),
                                 ),
-                            elevation: 20)
+                              ),
+                            ),
+                          ),
+                        )
                         .closed
                         .then((value) {
                       cubit.changeBottomSheet(isShow: false, icon: Icons.edit);
@@ -213,6 +217,8 @@ class HomeLayout extends StatelessWidget {
                 onTap: (index) {
                   cubit.changeIndex(index);
                 },
+
+                // tab animation duration
                 items: [
                   BottomNavigationBarItem(
                     icon: Icon(Icons.menu_outlined),

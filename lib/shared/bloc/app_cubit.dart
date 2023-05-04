@@ -33,8 +33,13 @@ class AppCubit extends Cubit<AppState> {
     'ArchivedTask',
   ];
 
-  // task save here
-  List<Map> tasks = [];
+  /// tasks save here
+  // this for new screen
+  List<Map> newTasks = [];
+  // this for done screen
+  List<Map> doneTasks = [];
+  // this for archived
+  List<Map> archivedTasks = [];
 
   // to toggle between bottomSheet open or not to see icon edit or not
   bool isBottomSheetShown = false;
@@ -42,19 +47,20 @@ class AppCubit extends Cubit<AppState> {
   // default fab icon and I toggle this  in bottomSheet
   IconData fabIcon = Icons.edit;
 
-  void changeIndex(int index) {
-    currentIndex = index;
-    emit(AppChangeBottomNavStates());
-  }
-
   // this method is for change icon when click on FAB button
   void changeBottomSheet({
     required bool isShow,
     required IconData icon,
-  })  {
+  }) {
     isBottomSheetShown = isShow;
     fabIcon = icon;
     emit(AppChangeBottomSheetState());
+  }
+
+  // this for change bottom nav index
+  void changeIndex(int index) {
+    currentIndex = index;
+    emit(AppChangeBottomNavStates());
   }
 
   // create database
@@ -89,16 +95,7 @@ class AppCubit extends Cubit<AppState> {
         // 'onOpen' mean after create database open then do thing you write it
         onOpen: (database) {
       // call the 'getDataFromDatabase' method to save value from database in task to use in app
-      getDataFromDatabase(database).then((value) {
-        // save 'value' database in tasks
-        tasks = value;
-        // print content of database
-        print("database content \n $tasks");
-        // change state
-        emit(AppGetDatabaseState());
-      }).catchError((error) {
-        print('this is error: $error');
-      });
+      getDataFromDatabase(database);
       // if 'onCreate' make database, then open database and print to console open 'database'
       print('database opened');
     }).then((value) {
@@ -119,38 +116,96 @@ class AppCubit extends Cubit<AppState> {
     // 'txn' this parameter
     await database.transaction((txn) async {
       // rawInsert mean insert new row in database
-      txn.rawInsert(
+      txn
+          .rawInsert(
         // 'INSERT INTO' mean import to table
         // 'task' is name of table
         // 'title,time,date,status' is name places in database
         // 'VALUES' is save this value title field so time and date like that
         'INSERT INTO task(title,time,date,status) VALUES("$title" , "$time","$date","new")',
-      ).then((value) {
+      )
+          .then((value) {
         // print information of insert
         // value are id of record
         print(
             'the id is ($value)\n \'now you insert new record (mean insert information to task table) have those values\' \n title task: $title \n time task: $time \n date task: $date \n insert task is complete');
         emit(AppInsertDatabaseState());
-        getDataFromDatabase(database).then((value) {
-          tasks = value;
-          print("database content \n $tasks");
-          emit(AppGetDatabaseState());
-        });
+        getDataFromDatabase(database);
       }).catchError((error) {
         // In error
         // give me error and covert error message to string
         print('error is ${error.toString()}');
       });
+      // don't return anything because we doesn't need
       return null;
     });
   }
 
   // get data from database
-  Future<List<Map>> getDataFromDatabase(database) async {
+  void getDataFromDatabase(database) async {
+    // this because don't add on old task
+    newTasks = [];
+    doneTasks = [];
+    archivedTasks = [];
     // 'SELECT' mean give me or take table
     // '*' all thing
     // 'FROM' mean from this
     // 'task' this our table
-    return await database.rawQuery("SELECT * FROM task");
+    database.rawQuery("SELECT * FROM task").then((value) {
+      // this to check if status is new add in newTasks and doneTasks and archivedTasks like this
+      value.forEach((element) {
+        if (element['status'] == 'new')
+          newTasks.add(element);
+        else if (element['status'] == 'done')
+          doneTasks.add(element);
+        else
+          archivedTasks.add(element);
+      });
+      // this for see content of database on console
+      print(
+          "database content \n [ $newTasks ] , [ $doneTasks ] , [ $archivedTasks ]");
+      emit(AppGetDatabaseState());
+    });
+  }
+
+  // this method  of update, your update(status , id)
+  void updateDatabase({
+    required String status,
+    required int id,
+  }) async {
+    // 'UPDATE' mean update from this table
+    // 'task' this uor table
+    // 'SET' this the column so we update that
+    // 'WHERE' we update the id
+    // first place will update status then scend update id
+    database.rawUpdate('UPDATE task SET status = ? WHERE id = ?', [
+      '$status',
+      // here we getting the id
+      id,
+    ]).then(
+      (value) {
+        // get data after update for see on screen
+        getDataFromDatabase(database);
+        emit(AppUpdateDatabaseState());
+      },
+    );
+  }
+
+  // this method  of update, your update(status , id)
+  void deleteDate({
+    required int id,
+  }) async {
+    // 'DELETE FROM' mean delete from this table
+    // 'task' this uor table
+    // 'WHERE id' this mean delete the id
+    database.rawDelete('DELETE FROM task WHERE id = ?', [
+      id,
+    ]).then(
+      (value) {
+        // get data after delete for see on screen
+        getDataFromDatabase(database);
+        emit(AppDeleteDatabaseState());
+      },
+    );
   }
 }

@@ -1,41 +1,78 @@
-import 'dart:ffi';
-
 import 'package:flutter/material.dart';
+import 'package:todo_app/shared/bloc/app_cubit.dart';
 import 'package:todo_app/shared/components/constant.dart';
 import 'package:todo_app/shared/styles/color.dart';
 
 /// to make task item
-Widget buildTaskItem({required int taskNumber, Map? model}) => Padding(
-      padding: const EdgeInsets.all(pPadding),
-      child: Row(
-        children: [
-          CircleAvatar(
-            radius: 40,
-            // time of task
-            child: Text(
-              '${model!['time']}',
-              style: TextStyle(color: Colors.white),
+Widget buildTaskItem({
+  required int taskNumber,
+  required Map model,
+  required BuildContext context,
+}) =>
+    Dismissible(
+      key: Key(model['id'].toString()),
+      onDismissed: (direction) {
+        AppCubit.get(context).deleteDate(id: model['id']);
+      },
+      child: Padding(
+        padding: const EdgeInsets.all(pPadding),
+        child: Row(
+          children: [
+            CircleAvatar(
+              radius: 40,
+              // time of task
+              child: Text(
+                '${model['time']}',
+                style: TextStyle(color: Colors.white),
+              ),
+              backgroundColor: sColor,
             ),
-            backgroundColor: sColor,
-          ),
-          SizedBox(width: 20),
-          Column(
-            mainAxisSize: MainAxisSize.min,
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              // title of task
-              Text(
-                '${taskNumber + 1}: ${model['title']}',
+            SizedBox(width: pSizeBox),
+            Expanded(
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  // title of task
+                  Text(
+                    '${taskNumber + 1}: ${model['title']}',
+                  ),
+                  // date of task
+                  Text(
+                    '${model['date']}',
+                    style: TextStyle(color: Colors.grey),
+                  ),
+                ],
               ),
-              // date of task
-              Text(
-                '${model['date']}',
-                style: TextStyle(color: Colors.grey),
+            ),
+            // this section to change status of task
+            // when click you move the task to done screen or archive
+            // NOTE: your update the status and id
+            IconButton(
+              onPressed: () {
+                // this change to archive
+                AppCubit.get(context)
+                    .updateDatabase(status: 'archived', id: model['id']);
+              },
+              icon: Icon(
+                Icons.archive,
+                color: Colors.grey,
               ),
-            ],
-          ),
-        ],
+            ),
+            IconButton(
+              onPressed: () {
+                // and this change to done
+                AppCubit.get(context)
+                    .updateDatabase(status: 'done', id: model['id']);
+              },
+              icon: Icon(
+                Icons.done,
+                color: Colors.green,
+              ),
+            ),
+          ],
+        ),
       ),
     );
 
@@ -43,19 +80,14 @@ Widget buildTaskItem({required int taskNumber, Map? model}) => Padding(
 Widget defaultFormField({
   required TextEditingController controller,
   required String label,
-  String? hint,
-  String? helper,
+  // String? helper,
   bool isPassword = false,
   // that is validation message
   required FormFieldValidator<String> validMsg,
   required TextInputType type,
   required Widget prefixIcon,
   required Function()? onTap,
-  Widget? suffixIcon,
-  Color? suffixIconColor,
-  Color? prefixIconColor,
   bool? disableKeyBoard = false,
-  VoidCallback? suffixPressed,
 }) =>
     TextFormField(
       showCursor: disableKeyBoard,
@@ -67,15 +99,8 @@ Widget defaultFormField({
         onTap!();
       },
       decoration: InputDecoration(
-        prefixIconColor: prefixIconColor,
-        suffixIconColor: suffixIconColor,
         prefixIcon: prefixIcon,
-        suffixIcon: suffixIcon != null
-            ? IconButton(onPressed: suffixPressed, icon: suffixIcon)
-            : null,
         labelText: label,
-        hintText: hint,
-        helperText: helper,
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(20),
         ),

@@ -1,5 +1,7 @@
 import 'package:bloc/bloc.dart';
 
+  // this is bloc observer 
+  // to see the all movement of states 
 class MyBlocObserver extends BlocObserver {
   @override
   void onCreate(BlocBase bloc) {
