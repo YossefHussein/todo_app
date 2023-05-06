@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sqflite/sqflite.dart';
 
-import 'states.dart';
 import '../../modules/archived_task_module.dart';
 import '../../modules/done_task_module.dart';
 import '../../modules/new_task_module.dart';
+import 'states.dart';
 
 class AppCubit extends Cubit<AppState> {
   AppCubit() : super(AppInitialState());
@@ -36,8 +36,10 @@ class AppCubit extends Cubit<AppState> {
   /// tasks save here
   // this for new screen
   List<Map> newTasks = [];
+
   // this for done screen
   List<Map> doneTasks = [];
+
   // this for archived
   List<Map> archivedTasks = [];
 
@@ -163,7 +165,7 @@ class AppCubit extends Cubit<AppState> {
       });
       // this for see content of database on console
       print(
-          "database content \n [ $newTasks ] , [ $doneTasks ] , [ $archivedTasks ]");
+          "database content \n new task list: \n [ $newTasks ] ,done task list: \n [ $doneTasks ] ,archived tasks list: \n [ $archivedTasks ]");
       emit(AppGetDatabaseState());
     });
   }

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import '../bloc/app_cubit.dart';
 import '../styles/color.dart';
 import 'constant.dart';
@@ -11,7 +10,6 @@ Widget buildTaskItem({
   required BuildContext context,
 }) {
   return Dismissible(
-
       key: Key(model['id'].toString()),
       onDismissed: (direction) {
         AppCubit.get(context).deleteDate(id: model['id']);
@@ -27,7 +25,6 @@ Widget buildTaskItem({
                 '${model['time']}',
                 style: TextStyle(color: Colors.white),
               ),
-              backgroundColor: sColor,
             ),
             SizedBox(width: pSizeBox),
             Expanded(

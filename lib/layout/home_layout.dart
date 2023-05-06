@@ -41,27 +41,33 @@ class HomeLayout extends StatelessWidget {
         builder: (context, state) {
           AppCubit cubit = AppCubit.get(context);
           return MaterialApp(
-            // theme
+            // theme of app
             theme: ThemeData(
-              useMaterial3: true,
+              // useMaterial3: true,
               scaffoldBackgroundColor: pScaffoldBackgroundColor,
               appBarTheme: AppBarTheme(
                 centerTitle: true,
-                color: pColor,
-                foregroundColor: pTextAppBarColor,
-              ),
-              floatingActionButtonTheme: FloatingActionButtonThemeData(
-                backgroundColor: pColor,
+                elevation: 0.0,
+                backgroundColor: pAppBarBackgroundColor,
+                titleTextStyle: TextStyle(
+                  color: pColor,
+                  fontSize: 30,
+                ),
               ),
               bottomNavigationBarTheme: BottomNavigationBarThemeData(
                 type: BottomNavigationBarType.fixed,
                 showSelectedLabels: true,
+                enableFeedback: true,
+                elevation: 0.0,
                 backgroundColor: pBottomNavigationBarColor,
-                elevation: 20,
+              ),
+              floatingActionButtonTheme: FloatingActionButtonThemeData(
+                elevation: 0,
+                enableFeedback: true,
               ),
               bottomSheetTheme: BottomSheetThemeData(
-                // backgroundColor: pBottomSheetColor,
-                elevation: 20,
+                elevation: 0.0,
+                backgroundColor: pBottomSheetColor,
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.only(
                     topLeft: Radius.circular(pBorderRadius * 2),
@@ -81,7 +87,9 @@ class HomeLayout extends StatelessWidget {
               key: scaffoldKey,
               appBar: AppBar(
                 // when click on any scree change the appBar to name his screen
-                title: Text(cubit.title[cubit.currentIndex]),
+                title: Text(
+                  cubit.title[cubit.currentIndex],
+                ),
               ),
               body: ConditionalBuilder(
                 condition: true,
@@ -219,10 +227,7 @@ class HomeLayout extends StatelessWidget {
                 child: Icon(cubit.fabIcon),
               ),
               bottomNavigationBar: BottomNavigationBar(
-                type: BottomNavigationBarType.fixed,
-                showSelectedLabels: true,
                 currentIndex: cubit.currentIndex,
-                elevation: 20,
                 onTap: (index) {
                   cubit.changeIndex(index);
                 },
