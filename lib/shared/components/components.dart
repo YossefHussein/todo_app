@@ -1,15 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:todo_app/shared/bloc/app_cubit.dart';
-import 'package:todo_app/shared/components/constant.dart';
-import 'package:todo_app/shared/styles/color.dart';
+
+import '../bloc/app_cubit.dart';
+import '../styles/color.dart';
+import 'constant.dart';
 
 /// to make task item
 Widget buildTaskItem({
   required int taskNumber,
   required Map model,
   required BuildContext context,
-}) =>
-    Dismissible(
+}) {
+  return Dismissible(
+
       key: Key(model['id'].toString()),
       onDismissed: (direction) {
         AppCubit.get(context).deleteDate(id: model['id']);
@@ -75,6 +77,7 @@ Widget buildTaskItem({
         ),
       ),
     );
+}
 
 /// this is default formField in my application
 Widget defaultFormField({
@@ -88,22 +91,24 @@ Widget defaultFormField({
   required Widget prefixIcon,
   required Function()? onTap,
   bool? disableKeyBoard = false,
-}) =>
-    TextFormField(
-      showCursor: disableKeyBoard,
-      readOnly: disableKeyBoard!,
-      controller: controller,
-      keyboardType: type,
-      obscureText: isPassword,
-      onTap: () {
-        onTap!();
-      },
-      decoration: InputDecoration(
-        prefixIcon: prefixIcon,
-        labelText: label,
-        border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(20),
-        ),
+}) {
+  return TextFormField(
+    showCursor: disableKeyBoard,
+    readOnly: disableKeyBoard!,
+    controller: controller,
+    keyboardType: type,
+    obscureText: isPassword,
+    onTap: () {
+      onTap!();
+    },
+    decoration: InputDecoration(
+      prefixIcon: prefixIcon,
+      labelText: label,
+      prefixIconColor: pIconColor,
+      border: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(20),
       ),
-      validator: validMsg,
-    );
+    ),
+    validator: validMsg,
+  );
+}

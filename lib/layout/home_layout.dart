@@ -5,8 +5,8 @@ import 'package:intl/intl.dart';
 import 'package:todo_app/shared/bloc/app_cubit.dart';
 
 import '../shared/bloc/states.dart';
-import '../shared/components/constant.dart';
 import '../shared/components/components.dart';
+import '../shared/components/constant.dart';
 import '../shared/styles/color.dart';
 
 // ignore: must_be_immutable
@@ -16,11 +16,13 @@ class HomeLayout extends StatelessWidget {
   // this is for see bottomSheet
   // ScaffoldState
   var scaffoldKey = GlobalKey<ScaffoldState>();
+
   // this use for validation
   // 'FormState' this type of 'GlobalKey'
   var formKey = GlobalKey<FormState>();
+
   // controllers
-  // this use for insert values o f controllers
+  // this use for insert values of controllers
   // to database of todo app
   var titleController = TextEditingController();
   var timeController = TextEditingController();
@@ -42,16 +44,23 @@ class HomeLayout extends StatelessWidget {
             // theme
             theme: ThemeData(
               useMaterial3: true,
+              scaffoldBackgroundColor: pScaffoldBackgroundColor,
               appBarTheme: AppBarTheme(
                 centerTitle: true,
                 color: pColor,
-                foregroundColor: pColorTextAppBar,
+                foregroundColor: pTextAppBarColor,
               ),
               floatingActionButtonTheme: FloatingActionButtonThemeData(
                 backgroundColor: pColor,
               ),
+              bottomNavigationBarTheme: BottomNavigationBarThemeData(
+                type: BottomNavigationBarType.fixed,
+                showSelectedLabels: true,
+                backgroundColor: pBottomNavigationBarColor,
+                elevation: 20,
+              ),
               bottomSheetTheme: BottomSheetThemeData(
-                backgroundColor: pBottomSheetColor,
+                // backgroundColor: pBottomSheetColor,
                 elevation: 20,
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.only(
@@ -217,8 +226,6 @@ class HomeLayout extends StatelessWidget {
                 onTap: (index) {
                   cubit.changeIndex(index);
                 },
-
-                // tab animation duration
                 items: [
                   BottomNavigationBarItem(
                     icon: Icon(Icons.menu_outlined),
