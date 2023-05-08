@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import '../bloc/app_cubit.dart';
 import '../styles/color.dart';
 import 'constant.dart';
@@ -8,9 +9,51 @@ Widget buildTaskItem({
   required int taskNumber,
   required Map model,
   required BuildContext context,
-}) {
-  return Dismissible(
+}) =>
+    Dismissible(
       key: Key(model['id'].toString()),
+      background: Container(
+        color: Colors.red,
+        alignment: Alignment.centerLeft,
+        child: Center(
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              Spacer(),
+              Text(
+                'DELETE',
+                style: TextStyle(
+                  color: Colors.white,
+                ),
+                textAlign: TextAlign.end,
+              ),
+              Spacer(
+                flex: 2,
+              ),
+            ],
+          ),
+        ),
+      ),
+      secondaryBackground: Container(
+        color: Colors.red,
+        alignment: Alignment.centerRight,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: [
+            Spacer(
+              flex: 2,
+            ),
+            Text(
+              'DELETE',
+              style: TextStyle(
+                color: Colors.white,
+              ),
+              textAlign: TextAlign.start,
+            ),
+            Spacer(),
+          ],
+        ),
+      ),
       onDismissed: (direction) {
         AppCubit.get(context).deleteDate(id: model['id']);
       },
@@ -25,6 +68,7 @@ Widget buildTaskItem({
                 '${model['time']}',
                 style: TextStyle(color: Colors.white),
               ),
+              backgroundColor: sColor,
             ),
             SizedBox(width: pSizeBox),
             Expanded(
@@ -74,19 +118,24 @@ Widget buildTaskItem({
         ),
       ),
     );
-}
 
 /// this is default formField in my application
-Widget defaultFormField({
+TextFormField defaultFormField({
+  // this to get and set information form textFormField
   required TextEditingController controller,
+  // label of textFormField
   required String label,
   // String? helper,
   bool isPassword = false,
   // that is validation message
   required FormFieldValidator<String> validMsg,
+  // type of textFormField
   required TextInputType type,
+  // this  icon
   required Widget prefixIcon,
+  // when click on textFormField
   required Function()? onTap,
+  // this when click
   bool? disableKeyBoard = false,
 }) {
   return TextFormField(
@@ -101,7 +150,6 @@ Widget defaultFormField({
     decoration: InputDecoration(
       prefixIcon: prefixIcon,
       labelText: label,
-      prefixIconColor: pIconColor,
       border: OutlineInputBorder(
         borderRadius: BorderRadius.circular(20),
       ),

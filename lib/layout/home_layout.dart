@@ -1,32 +1,17 @@
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:intl/intl.dart';
 import 'package:todo_app/shared/bloc/app_cubit.dart';
-
 import '../shared/bloc/states.dart';
 import '../shared/components/components.dart';
 import '../shared/components/constant.dart';
 import '../shared/styles/color.dart';
+import '../shared/translations/locale_keys.dart';
 
 // ignore: must_be_immutable
 class HomeLayout extends StatelessWidget {
   HomeLayout({Key? key}) : super(key: key);
-
-  // this is for see bottomSheet
-  // ScaffoldState
-  var scaffoldKey = GlobalKey<ScaffoldState>();
-
-  // this use for validation
-  // 'FormState' this type of 'GlobalKey'
-  var formKey = GlobalKey<FormState>();
-
-  // controllers
-  // this use for insert values of controllers
-  // to database of todo app
-  var titleController = TextEditingController();
-  var timeController = TextEditingController();
-  var dateController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -43,11 +28,10 @@ class HomeLayout extends StatelessWidget {
           return MaterialApp(
             // theme of app
             theme: ThemeData(
-              // useMaterial3: true,
               scaffoldBackgroundColor: pScaffoldBackgroundColor,
               appBarTheme: AppBarTheme(
                 centerTitle: true,
-                elevation: 0.0,
+                elevation: 0,
                 backgroundColor: pAppBarBackgroundColor,
                 titleTextStyle: TextStyle(
                   color: pColor,
@@ -58,15 +42,12 @@ class HomeLayout extends StatelessWidget {
                 type: BottomNavigationBarType.fixed,
                 showSelectedLabels: true,
                 enableFeedback: true,
-                elevation: 0.0,
                 backgroundColor: pBottomNavigationBarColor,
               ),
               floatingActionButtonTheme: FloatingActionButtonThemeData(
-                elevation: 0,
                 enableFeedback: true,
               ),
               bottomSheetTheme: BottomSheetThemeData(
-                elevation: 0.0,
                 backgroundColor: pBottomSheetColor,
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.only(
@@ -80,15 +61,19 @@ class HomeLayout extends StatelessWidget {
                 secondary: sColor,
               ),
             ),
+            title: '${LocaleKeys.appName.tr()}',
+            localizationsDelegates: context.localizationDelegates,
+            supportedLocales: context.supportedLocales,
+            locale: context.locale,
             // main app widgets
             home: Scaffold(
               // this to bottom sheet
               // for see in screen
-              key: scaffoldKey,
+              key: cubit.scaffoldKey,
               appBar: AppBar(
                 // when click on any scree change the appBar to name his screen
                 title: Text(
-                  cubit.title[cubit.currentIndex],
+                  cubit.title[cubit.currentIndex].tr(),
                 ),
               ),
               body: ConditionalBuilder(
@@ -107,23 +92,23 @@ class HomeLayout extends StatelessWidget {
                   // if bottom sheet shown from user
                   if (cubit.isBottomSheetShown) {
                     // doing validation on defaultFormField
-                    if (formKey.currentState!.validate()) {
+                    if (cubit.formKey.currentState!.validate()) {
                       cubit.insertToDatabase(
                         // give data from controller to database
-                        title: titleController.text,
-                        date: dateController.text,
-                        time: timeController.text,
+                        title: cubit.titleController.text,
+                        date: cubit.dateController.text,
+                        time: cubit.timeController.text,
                       );
                     }
                   } else {
-                    scaffoldKey.currentState!
+                    cubit.scaffoldKey.currentState!
                         .showBottomSheet(
                           (context) => SingleChildScrollView(
                             child: Container(
                               child: Padding(
                                 padding: const EdgeInsets.all(20.0),
                                 child: Form(
-                                  key: formKey,
+                                  key: cubit.formKey,
                                   child: Column(
                                     mainAxisSize: MainAxisSize.min,
                                     children: [
@@ -132,20 +117,22 @@ class HomeLayout extends StatelessWidget {
                                       ),
                                       // this task title formField
                                       defaultFormField(
-                                          controller: titleController,
+                                          controller: cubit.titleController,
                                           type: TextInputType.text,
                                           // this is validation
                                           validMsg: (value) {
                                             // if the formField empty see validation
                                             if (value!.isEmpty) {
-                                              return "Title Can't be Empty";
+                                              return "${LocaleKeys.titleIsEmptyFormFiled.tr()}";
                                             }
                                             return null;
                                           },
                                           onTap: () {
-                                            print(timeController.toString());
+                                            print(cubit.timeController
+                                                .toString());
                                           },
-                                          label: "Task Title",
+                                          label:
+                                              "${LocaleKeys.taskTitleFormFiledLabel.tr()}",
                                           prefixIcon: Icon(Icons.title)),
                                       SizedBox(
                                         height: 20,
@@ -153,11 +140,11 @@ class HomeLayout extends StatelessWidget {
                                       // this task time formField
                                       defaultFormField(
                                         disableKeyBoard: true,
-                                        controller: timeController,
+                                        controller: cubit.timeController,
                                         type: TextInputType.datetime,
                                         validMsg: (value) {
                                           if (value!.isEmpty) {
-                                            return "Time Can't be Empty";
+                                            return "${LocaleKeys.titleIsEmptyFormFiled.tr()}";
                                           }
                                           return null;
                                         },
@@ -166,14 +153,15 @@ class HomeLayout extends StatelessWidget {
                                                   context: context,
                                                   initialTime: TimeOfDay.now())
                                               .then((value) {
-                                            timeController.text = value!
+                                            cubit.timeController.text = value!
                                                 .format(context)
                                                 .toString();
 
                                             print(value.format(context));
                                           });
                                         },
-                                        label: "Task Time",
+                                        label:
+                                            "${LocaleKeys.taskTimeFormFiledLabel.tr()}",
                                         prefixIcon:
                                             Icon(Icons.watch_later_rounded),
                                       ),
@@ -182,11 +170,11 @@ class HomeLayout extends StatelessWidget {
                                       ),
                                       defaultFormField(
                                         disableKeyBoard: true,
-                                        controller: dateController,
+                                        controller: cubit.dateController,
                                         type: TextInputType.datetime,
                                         validMsg: (value) {
                                           if (value!.isEmpty) {
-                                            return "Date Can't be Empty";
+                                            return "${LocaleKeys.dateIsEmptyFormFiled.tr()}";
                                           }
                                           return null;
                                         },
@@ -199,7 +187,7 @@ class HomeLayout extends StatelessWidget {
                                                 DateTime.parse('2100-01-01'),
                                           ).then((value) {
                                             // equal the value getting from "showDatePicker" to timeController
-                                            dateController.text =
+                                            cubit.dateController.text =
                                                 DateFormat.yMMMEd()
                                                     .format(value!);
                                           }).catchError((error) {
@@ -207,7 +195,8 @@ class HomeLayout extends StatelessWidget {
                                                 'this is an ${error.toString()}');
                                           });
                                         },
-                                        label: "Task Date",
+                                        label:
+                                            "${LocaleKeys.taskDateFormFiledLabel.tr()}",
                                         prefixIcon: Icon(Icons.calendar_today),
                                       )
                                     ],
@@ -234,15 +223,15 @@ class HomeLayout extends StatelessWidget {
                 items: [
                   BottomNavigationBarItem(
                     icon: Icon(Icons.menu_outlined),
-                    label: 'NewTask',
+                    label: '${LocaleKeys.newTaskBottomNav.tr()}',
                   ),
                   BottomNavigationBarItem(
                     icon: Icon(Icons.check_circle_outline),
-                    label: 'DoneTask',
+                    label: '${LocaleKeys.doneTaskBottomNav.tr()}',
                   ),
                   BottomNavigationBarItem(
                     icon: Icon(Icons.archive_outlined),
-                    label: 'ArchivedTask',
+                    label: '${LocaleKeys.archivedTaskBottomNav.tr()}',
                   ),
                 ],
               ),

@@ -1,10 +1,11 @@
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:todo_app/shared/bloc/states.dart';
-
 import '../shared/bloc/app_cubit.dart';
 import '../shared/components/components.dart';
+import '../shared/translations/locale_keys.dart';
 
 class DoneTaskModule extends StatelessWidget {
   const DoneTaskModule({Key? key}) : super(key: key);
@@ -30,7 +31,7 @@ class DoneTaskModule extends StatelessWidget {
                   color: Colors.grey,
                 ),
                 Text(
-                  'No Tasks Yet, Please Add Some Tasks',
+                  '${LocaleKeys.noTasksYet.tr().toUpperCase()}',
                   style: TextStyle(
                     fontSize: 20,
                     color: Colors.grey,
@@ -50,7 +51,6 @@ class DoneTaskModule extends StatelessWidget {
               model: tasks[index],
               context: context,
             ),
- 
             itemCount: tasks.length,
           ),
         );

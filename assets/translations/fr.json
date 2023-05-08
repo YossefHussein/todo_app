@@ -1,0 +1,16 @@
+{
+    "appName":"Todooos",
+    "appTitleNewTask":"Nouvelle tâche",
+    "appTitleDoneTask":"TerminéTâche",
+    "appTitleArchivedTask":"Tâche archivée",
+    "titleIsEmptyFormFiled": "Le titre est vide",
+    "timeIsEmptyFormFiled": "Le temps est vide",
+    "dateIsEmptyFormFiled": "La date est vide",
+    "taskTitleFormFiledLabel":"Titre de la tâche",
+    "taskTimeFormFiledLabel":"Temps de tâche",
+    "taskDateFormFiledLabel":"Date de la tâche",
+    "newTaskBottomNav":"Nouvelle tâche",
+    "doneTaskBottomNav":"Terminé Tâche",
+    "archivedTaskBottomNav":"Tâche archivée",
+    "noTasksYet":"Aucune tâche pour le moment, veuillez ajouter des tâches"
+}

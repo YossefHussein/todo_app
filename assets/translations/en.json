@@ -1,0 +1,16 @@
+{
+    "appName":"Tdooos",
+    "appTitleNewTask":"NewTask",
+    "appTitleDoneTask":"DoneTask",
+    "appTitleArchivedTask":"ArchivedTask",
+    "titleIsEmptyFormFiled": "Title is empty",
+    "timeIsEmptyFormFiled": "Time is empty",
+    "dateIsEmptyFormFiled": "Date is empty",
+    "taskTitleFormFiledLabel":"Task Title",
+    "taskTimeFormFiledLabel":"Task Time",
+    "taskDateFormFiledLabel":"Task Date",
+    "newTaskBottomNav":"NewTask",
+    "doneTaskBottomNav":"DoneTask",
+    "archivedTaskBottomNav":"Archived",
+    "noTasksYet":"No Tasks Yet, Please Add Some Tasks"
+}

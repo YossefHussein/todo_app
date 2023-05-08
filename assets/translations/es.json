@@ -1,0 +1,16 @@
+{
+    "appName":"Tdooos",
+    "appTitleNewTask":"Nueva Tarea",
+    "appTitleDoneTask":"Terminada Tarea",
+    "appTitleArchivedTask":"Tarea Archivada",
+    "titleIsEmptyFormFiled": "Título está vacío",
+    "timeIsEmptyFormFiled": "tiempo Está vacío",
+    "dateIsEmptyFormFiled": "Fecha Está vacía",
+    "taskTitleFormFiledLabel":"Título De La Tarea",
+    "taskTimeFormFiledLabel":"Tiempo De Tarea",
+    "taskDateFormFiledLabel":"Fecha De La Tarea",
+    "newTaskBottomNav":"Nueva tarea",
+    "doneTaskBottomNav":"Terminada Tarea",
+    "archivedTaskBottomNav":"Tarea Archivada",
+    "noTasksYet":"No hay tareas todavía, por favor agregue algunas tareas"
+}

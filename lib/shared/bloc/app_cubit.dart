@@ -1,6 +1,8 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sqflite/sqflite.dart';
+import 'package:todo_app/shared/translations/locale_keys.dart';
 
 import '../../modules/archived_task_module.dart';
 import '../../modules/done_task_module.dart';
@@ -27,10 +29,10 @@ class AppCubit extends Cubit<AppState> {
   ];
 
   // this to toggle between title of screen
-  List<String> title = const [
-    'NewTask',
-    'DoneTask',
-    'ArchivedTask',
+  var title = [
+    LocaleKeys.appTitleNewTask,
+    LocaleKeys.appTitleDoneTask,
+    LocaleKeys.appTitleArchivedTask,
   ];
 
   /// tasks save here
@@ -42,6 +44,21 @@ class AppCubit extends Cubit<AppState> {
 
   // this for archived
   List<Map> archivedTasks = [];
+
+  // this is for see bottomSheet
+  // ScaffoldState
+  var scaffoldKey = GlobalKey<ScaffoldState>();
+
+  // this use for validation
+  // 'FormState' this type of 'GlobalKey'
+  var formKey = GlobalKey<FormState>();
+
+  // controllers
+  // this use for insert values of controllers
+  // to database of todo app
+  var titleController = TextEditingController();
+  var timeController = TextEditingController();
+  var dateController = TextEditingController();
 
   // to toggle between bottomSheet open or not to see icon edit or not
   bool isBottomSheetShown = false;

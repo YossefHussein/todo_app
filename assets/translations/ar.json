@@ -1,0 +1,20 @@
+{
+    "appName":"Todooos",
+    "appTitleNewTask":"مهام الجديدة",
+    "appTitleDoneTask":"مهام المنتهية",
+    "appTitleArchivedTask":"الارشيف",
+    
+    "titleIsEmptyFormFiled": "عنوان مهمة  ليس موجود",
+    "timeIsEmptyFormFiled": "معاد مهمة ليس موجود",
+    "dateIsEmptyFormFiled": "تريخ مهمة ليس موجود",
+
+    "taskTitleFormFiledLabel":"عنوان المهمة",
+    "taskTimeFormFiledLabel":"معاد الممهمة",
+    "taskDateFormFiledLabel":"تريخ المهمة",
+    
+    "newTaskBottomNav": "مهام الجديدة",
+    "doneTaskBottomNav": "مهام المنتهية",
+    "archivedTaskBottomNav": "الارشيف",
+
+    "noTasksYet":"لا يوجد مهام اضف مهام جديد"
+}
