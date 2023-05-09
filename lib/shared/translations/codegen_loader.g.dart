@@ -15,7 +15,6 @@ class CodegenLoader extends AssetLoader{
   }
 
   static const Map<String,dynamic> ar = {
-  "appName": "Todooos",
   "appTitleNewTask": "مهام الجديدة",
   "appTitleDoneTask": "مهام المنتهية",
   "appTitleArchivedTask": "الارشيف",
@@ -31,7 +30,6 @@ class CodegenLoader extends AssetLoader{
   "noTasksYet": "لا يوجد مهام اضف مهام جديد"
 };
 static const Map<String,dynamic> en = {
-  "appName": "Tdooos",
   "appTitleNewTask": "NewTask",
   "appTitleDoneTask": "DoneTask",
   "appTitleArchivedTask": "ArchivedTask",
@@ -47,35 +45,33 @@ static const Map<String,dynamic> en = {
   "noTasksYet": "No Tasks Yet, Please Add Some Tasks"
 };
 static const Map<String,dynamic> es = {
-  "appName": "Tdooos",
-  "appTitleNewTask": "Nueva Tarea",
-  "appTitleDoneTask": "Terminada Tarea",
-  "appTitleArchivedTask": "Tarea Archivada",
+  "appTitleNewTask": "NuevaTarea",
+  "appTitleDoneTask": "TerminadaTarea",
+  "appTitleArchivedTask": "ArchivadaTarea",
   "titleIsEmptyFormFiled": "Título está vacío",
-  "timeIsEmptyFormFiled": "tiempo Está vacío",
-  "dateIsEmptyFormFiled": "Fecha Está vacía",
-  "taskTitleFormFiledLabel": "Título De La Tarea",
-  "taskTimeFormFiledLabel": "Tiempo De Tarea",
-  "taskDateFormFiledLabel": "Fecha De La Tarea",
+  "timeIsEmptyFormFiled": "tiempo está vacío",
+  "dateIsEmptyFormFiled": "Fecha está vacía",
+  "taskTitleFormFiledLabel": "Título de la tarea",
+  "taskTimeFormFiledLabel": "Tiempo de la tarea",
+  "taskDateFormFiledLabel": "Fecha de La tarea",
   "newTaskBottomNav": "Nueva tarea",
-  "doneTaskBottomNav": "Terminada Tarea",
-  "archivedTaskBottomNav": "Tarea Archivada",
+  "doneTaskBottomNav": "Terminada tarea",
+  "archivedTaskBottomNav": "Archivada",
   "noTasksYet": "No hay tareas todavía, por favor agregue algunas tareas"
 };
 static const Map<String,dynamic> fr = {
-  "appName": "Todooos",
-  "appTitleNewTask": "Nouvelle tâche",
+  "appTitleNewTask": "NouvelleTâche",
   "appTitleDoneTask": "TerminéTâche",
-  "appTitleArchivedTask": "Tâche archivée",
+  "appTitleArchivedTask": "archivéeTâche",
   "titleIsEmptyFormFiled": "Le titre est vide",
   "timeIsEmptyFormFiled": "Le temps est vide",
   "dateIsEmptyFormFiled": "La date est vide",
   "taskTitleFormFiledLabel": "Titre de la tâche",
   "taskTimeFormFiledLabel": "Temps de tâche",
   "taskDateFormFiledLabel": "Date de la tâche",
-  "newTaskBottomNav": "Nouvelle tâche",
+  "newTaskBottomNav": "Nouvelle Tâche",
   "doneTaskBottomNav": "Terminé Tâche",
-  "archivedTaskBottomNav": "Tâche archivée",
+  "archivedTaskBottomNav": "archivée",
   "noTasksYet": "Aucune tâche pour le moment, veuillez ajouter des tâches"
 };
 static const Map<String, Map<String,dynamic>> mapLocales = {"ar": ar, "en": en, "es": es, "fr": fr};

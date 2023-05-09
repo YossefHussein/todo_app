@@ -9,6 +9,7 @@ import '../shared/translations/locale_keys.dart';
 
 class NewTaskModule extends StatelessWidget {
   const NewTaskModule({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<AppCubit, AppState>(

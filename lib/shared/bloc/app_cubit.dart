@@ -161,7 +161,7 @@ class AppCubit extends Cubit<AppState> {
   }
 
   // get data from database
-  void getDataFromDatabase(database) async {
+  void getDataFromDatabase(Database database) {
     // this because don't add on old task
     newTasks = [];
     doneTasks = [];
@@ -177,12 +177,11 @@ class AppCubit extends Cubit<AppState> {
           newTasks.add(element);
         else if (element['status'] == 'done')
           doneTasks.add(element);
-        else
-          archivedTasks.add(element);
+        else archivedTasks.add(element);
       });
       // this for see content of database on console
       print(
-          "database content \n new task list: \n [ $newTasks ] ,done task list: \n [ $doneTasks ] ,archived tasks list: \n [ $archivedTasks ]");
+          "database content \n new task list: \n [ $newTasks ] , \n done task list: \n [ $doneTasks ] ,archived tasks list: \n [ $archivedTasks ] ");
       emit(AppGetDatabaseState());
     });
   }
@@ -211,13 +210,13 @@ class AppCubit extends Cubit<AppState> {
   }
 
   // this method  of update, your update(status , id)
-  Future<void> deleteDate({
+  Future<void> deleteData({
     required int id,
   }) async {
     // 'DELETE FROM' mean delete from this table
     // 'task' this uor table
     // 'WHERE id' this mean delete the id
-   await database.rawDelete('DELETE FROM task WHERE id = ?', [
+    await database.rawDelete('DELETE FROM task WHERE id = ?', [
       id,
     ]).then(
       (value) {

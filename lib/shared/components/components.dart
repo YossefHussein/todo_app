@@ -55,7 +55,7 @@ Widget buildTaskItem({
         ),
       ),
       onDismissed: (direction) {
-        AppCubit.get(context).deleteDate(id: model['id']);
+        AppCubit.get(context).deleteData(id: model['id']);
       },
       child: Padding(
         padding: const EdgeInsets.all(pPadding),
@@ -110,7 +110,7 @@ Widget buildTaskItem({
                     .updateDatabase(status: 'done', id: model['id']);
               },
               icon: Icon(
-                Icons.done,
+                Icons.check_box,
                 color: Colors.green,
               ),
             ),

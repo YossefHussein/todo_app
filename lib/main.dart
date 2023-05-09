@@ -80,7 +80,7 @@ class App extends StatelessWidget {
                 secondary: sColor,
               ),
             ),
-            title: '${LocaleKeys.appName.tr()}',
+            title: 'todo',
             localizationsDelegates: context.localizationDelegates,
             supportedLocales: context.supportedLocales,
             locale: context.locale,

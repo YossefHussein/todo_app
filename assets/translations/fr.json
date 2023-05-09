@@ -8,8 +8,8 @@
     "taskTitleFormFiledLabel":"Titre de la tâche",
     "taskTimeFormFiledLabel":"Temps de tâche",
     "taskDateFormFiledLabel":"Date de la tâche",
-    "newTaskBottomNav":"Nouvelle tâche",
+    "newTaskBottomNav":"Nouvelle Tâche",
     "doneTaskBottomNav":"Terminé Tâche",
-    "archivedTaskBottomNav":"Tâche archivée",
+    "archivedTaskBottomNav":"archivée",
     "noTasksYet":"Aucune tâche pour le moment, veuillez ajouter des tâches"
 }
