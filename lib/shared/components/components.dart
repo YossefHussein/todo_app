@@ -35,8 +35,8 @@ Widget buildTaskItem({
         ),
       ),
       secondaryBackground: Container(
-        color: Colors.red,
         alignment: Alignment.centerRight,
+        color: Colors.red,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.end,
           children: [

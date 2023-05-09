@@ -211,13 +211,13 @@ class AppCubit extends Cubit<AppState> {
   }
 
   // this method  of update, your update(status , id)
-  void deleteDate({
+  Future<void> deleteDate({
     required int id,
   }) async {
     // 'DELETE FROM' mean delete from this table
     // 'task' this uor table
     // 'WHERE id' this mean delete the id
-    database.rawDelete('DELETE FROM task WHERE id = ?', [
+   await database.rawDelete('DELETE FROM task WHERE id = ?', [
       id,
     ]).then(
       (value) {
