@@ -10,9 +10,14 @@ import '../shared/styles/color.dart';
 import '../shared/translations/locale_keys.dart';
 
 // ignore: must_be_immutable
-class HomeLayout extends StatelessWidget {
+class HomeLayout extends StatefulWidget {
   HomeLayout({Key? key}) : super(key: key);
 
+  @override
+  State<HomeLayout> createState() => _HomeLayoutState();
+}
+
+class _HomeLayoutState extends State<HomeLayout> {
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<AppCubit, AppState>(
@@ -23,6 +28,7 @@ class HomeLayout extends StatelessWidget {
       },
       builder: (context, state) {
         AppCubit cubit = AppCubit.get(context);
+      
         return Scaffold(
           // this to bottom sheet
           // for see in screen
@@ -180,4 +186,5 @@ class HomeLayout extends StatelessWidget {
       },
     );
   }
+
 }

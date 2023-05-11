@@ -1,4 +1,5 @@
 {
+    "appName" :"ToDoo++ List App",
     "appTitleNewTask":"NewTask",
     "appTitleDoneTask":"DoneTask",
     "appTitleArchivedTask":"ArchivedTask",

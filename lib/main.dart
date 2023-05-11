@@ -1,15 +1,15 @@
 import 'package:easy_localization/easy_localization.dart';
+import 'package:easy_splash_screen/easy_splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:todo_app/layout/home_layout.dart';
 import 'package:todo_app/shared/bloc/app_cubit.dart';
 import 'package:todo_app/shared/bloc/my_bloc_observer.dart';
 import 'package:todo_app/shared/translations/codegen_loader.g.dart';
-import 'layout/home_layout.dart';
+import 'package:todo_app/shared/translations/locale_keys.dart';
 import 'shared/bloc/states.dart';
 import 'shared/components/constant.dart';
 import 'shared/styles/color.dart';
-import 'shared/translations/locale_keys.dart';
-import 'package:easy_localization/easy_localization.dart';
 
 void main() async {
   // this  use is when convert main function to async
@@ -55,6 +55,7 @@ class App extends StatelessWidget {
                 titleTextStyle: TextStyle(
                   color: pColor,
                   fontSize: 30,
+                  
                 ),
               ),
               bottomNavigationBarTheme: BottomNavigationBarThemeData(
@@ -80,15 +81,46 @@ class App extends StatelessWidget {
                 secondary: sColor,
               ),
             ),
-            title: 'todo',
+            title: '${LocaleKeys.appName.tr()}',
             localizationsDelegates: context.localizationDelegates,
             supportedLocales: context.supportedLocales,
             locale: context.locale,
             // main app widgets
-            home: HomeLayout(),
+            home: EasySplashScreen(
+              title: Text(
+                "${LocaleKeys.appName.tr()}",
+                style: TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white,
+                ),
+              ),
+              gradientBackground: LinearGradient(
+                colors: [
+                  Colors.blue,
+                  Colors.blue.shade300,
+                ],
+                begin: Alignment.bottomCenter,
+                end: Alignment.topCenter,
+              ),
+              showLoader: true,
+              loaderColor: Colors.white,
+              loadingText: Text(
+                "Loading...",
+                style: TextStyle(
+                  color: Colors.white,
+                ),
+              ),
+              navigator: HomeLayout(),
+              durationInSeconds: 5, 
+              logo: Image.asset(
+                'assets/img/icon.png',
+              ),
+            ),
           );
         },
       ),
     );
   }
 }
+

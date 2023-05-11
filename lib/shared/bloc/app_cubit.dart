@@ -177,7 +177,8 @@ class AppCubit extends Cubit<AppState> {
           newTasks.add(element);
         else if (element['status'] == 'done')
           doneTasks.add(element);
-        else archivedTasks.add(element);
+        else
+          archivedTasks.add(element);
       });
       // this for see content of database on console
       print(

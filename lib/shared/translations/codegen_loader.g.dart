@@ -15,6 +15,7 @@ class CodegenLoader extends AssetLoader{
   }
 
   static const Map<String,dynamic> ar = {
+  "appName": "ToDoo++ List App",
   "appTitleNewTask": "مهام الجديدة",
   "appTitleDoneTask": "مهام المنتهية",
   "appTitleArchivedTask": "الارشيف",
@@ -30,6 +31,7 @@ class CodegenLoader extends AssetLoader{
   "noTasksYet": "لا يوجد مهام اضف مهام جديد"
 };
 static const Map<String,dynamic> en = {
+  "appName": "ToDoo++ List App",
   "appTitleNewTask": "NewTask",
   "appTitleDoneTask": "DoneTask",
   "appTitleArchivedTask": "ArchivedTask",
@@ -45,6 +47,7 @@ static const Map<String,dynamic> en = {
   "noTasksYet": "No Tasks Yet, Please Add Some Tasks"
 };
 static const Map<String,dynamic> es = {
+  "appName": "ToDoo++ List App",
   "appTitleNewTask": "NuevaTarea",
   "appTitleDoneTask": "TerminadaTarea",
   "appTitleArchivedTask": "ArchivadaTarea",
@@ -60,6 +63,7 @@ static const Map<String,dynamic> es = {
   "noTasksYet": "No hay tareas todavía, por favor agregue algunas tareas"
 };
 static const Map<String,dynamic> fr = {
+  "appName": "ToDoo++ List App",
   "appTitleNewTask": "NouvelleTâche",
   "appTitleDoneTask": "TerminéTâche",
   "appTitleArchivedTask": "archivéeTâche",

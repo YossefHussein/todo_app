@@ -7,9 +7,14 @@ import 'package:todo_app/shared/bloc/states.dart';
 import '../shared/components/components.dart';
 import '../shared/translations/locale_keys.dart';
 
-class NewTaskModule extends StatelessWidget {
+class NewTaskModule extends StatefulWidget {
   const NewTaskModule({Key? key}) : super(key: key);
 
+  @override
+  State<NewTaskModule> createState() => _NewTaskModuleState();
+}
+
+class _NewTaskModuleState extends State<NewTaskModule> {
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<AppCubit, AppState>(
