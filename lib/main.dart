@@ -54,8 +54,7 @@ class App extends StatelessWidget {
                 backgroundColor: pAppBarBackgroundColor,
                 titleTextStyle: TextStyle(
                   color: pColor,
-                  fontSize: 30,
-                  
+                  fontSize: 30,          
                 ),
               ),
               bottomNavigationBarTheme: BottomNavigationBarThemeData(

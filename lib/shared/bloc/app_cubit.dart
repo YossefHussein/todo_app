@@ -1,9 +1,7 @@
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:todo_app/shared/translations/locale_keys.dart';
-
 import '../../modules/archived_task_module.dart';
 import '../../modules/done_task_module.dart';
 import '../../modules/new_task_module.dart';
@@ -161,7 +159,7 @@ class AppCubit extends Cubit<AppState> {
   }
 
   // get data from database
-  void getDataFromDatabase(Database database) {
+  Future<void> getDataFromDatabase(Database database) async {
     // this because don't add on old task
     newTasks = [];
     doneTasks = [];
@@ -187,8 +185,8 @@ class AppCubit extends Cubit<AppState> {
     });
   }
 
-  // this method  of update, your update(status , id)
-  void updateDatabase({
+  // this method  of update, you update(status , id)
+  Future<void>  updateDatabase({
     required String status,
     required int id,
   }) async {
@@ -210,13 +208,13 @@ class AppCubit extends Cubit<AppState> {
     );
   }
 
-  // this method  of update, your update(status , id)
+  // this method  of delete, you delete(id)
   Future<void> deleteData({
     required int id,
   }) async {
     // 'DELETE FROM' mean delete from this table
     // 'task' this uor table
-    // 'WHERE id' this mean delete the id
+    // 'WHERE id' this mean delete the id and WHERE this's place
     await database.rawDelete('DELETE FROM task WHERE id = ?', [
       id,
     ]).then(
@@ -227,4 +225,5 @@ class AppCubit extends Cubit<AppState> {
       },
     );
   }
+
 }

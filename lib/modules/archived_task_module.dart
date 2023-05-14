@@ -5,7 +5,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../shared/bloc/app_cubit.dart';
 import '../shared/bloc/states.dart';
 import '../shared/components/components.dart';
-import '../shared/translations/locale_keys.dart';
 
 class ArchivedTaskModule extends StatelessWidget {
   const ArchivedTaskModule({Key? key}) : super(key: key);

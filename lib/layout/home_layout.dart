@@ -5,8 +5,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:todo_app/shared/bloc/app_cubit.dart';
 import '../shared/bloc/states.dart';
 import '../shared/components/components.dart';
-import '../shared/components/constant.dart';
-import '../shared/styles/color.dart';
 import '../shared/translations/locale_keys.dart';
 
 // ignore: must_be_immutable
@@ -28,7 +26,6 @@ class _HomeLayoutState extends State<HomeLayout> {
       },
       builder: (context, state) {
         AppCubit cubit = AppCubit.get(context);
-      
         return Scaffold(
           // this to bottom sheet
           // for see in screen
@@ -39,7 +36,11 @@ class _HomeLayoutState extends State<HomeLayout> {
               cubit.title[cubit.currentIndex].tr(),
             ),
           ),
-          body: cubit.screen[cubit.currentIndex],
+          body: ConditionalBuilder(
+            condition: state is AppInsertDatabaseState,
+            builder: (context) => cubit.screen[cubit.currentIndex],
+            fallback: (context) => whenAddLoadTask(),
+          ),
           floatingActionButton: FloatingActionButton(
             onPressed: () {
               // if bottom sheet shown from user
@@ -186,5 +187,4 @@ class _HomeLayoutState extends State<HomeLayout> {
       },
     );
   }
-
 }

@@ -1,4 +1,3 @@
-
 // those are all states of app
 
 abstract class AppState {}
@@ -16,5 +15,7 @@ class AppGetDatabaseState extends AppState {}
 class AppInsertDatabaseState extends AppState {}
 
 class AppUpdateDatabaseState extends AppState {}
+
 class AppDeleteDatabaseState extends AppState {}
 
+class AppLoadDataState extends AppState{}
