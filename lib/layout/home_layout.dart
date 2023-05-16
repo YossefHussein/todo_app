@@ -36,11 +36,7 @@ class _HomeLayoutState extends State<HomeLayout> {
               cubit.title[cubit.currentIndex].tr(),
             ),
           ),
-          body: ConditionalBuilder(
-            condition: state is AppInsertDatabaseState,
-            builder: (context) => cubit.screen[cubit.currentIndex],
-            fallback: (context) => whenAddLoadTask(),
-          ),
+          body: cubit.screen[cubit.currentIndex],
           floatingActionButton: FloatingActionButton(
             onPressed: () {
               // if bottom sheet shown from user

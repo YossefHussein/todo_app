@@ -17,5 +17,3 @@ class AppInsertDatabaseState extends AppState {}
 class AppUpdateDatabaseState extends AppState {}
 
 class AppDeleteDatabaseState extends AppState {}
-
-class AppLoadDataState extends AppState{}

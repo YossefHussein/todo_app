@@ -186,7 +186,7 @@ class AppCubit extends Cubit<AppState> {
   }
 
   // this method  of update, you update(status , id)
-  Future<void>  updateDatabase({
+  Future<void> updateDatabase({
     required String status,
     required int id,
   }) async {
@@ -225,5 +225,4 @@ class AppCubit extends Cubit<AppState> {
       },
     );
   }
-
 }

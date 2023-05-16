@@ -16,7 +16,7 @@ class ArchivedTaskModule extends StatelessWidget {
       builder: (context, state) {
         // for see on archivedTasks
         var tasks = AppCubit.get(context).archivedTasks;
-        return taskConditionBuilder(tasks:tasks);
+        return taskConditionBuilder(tasks: tasks);
       },
     );
   }

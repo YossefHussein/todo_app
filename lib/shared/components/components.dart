@@ -160,7 +160,7 @@ TextFormField defaultFormField({
   );
 }
 
-Widget taskConditionBuilder({tasks}) => ConditionalBuilder(
+Widget taskConditionBuilder({required List<Map> tasks}) => ConditionalBuilder(
       // if the tasks under zero see no tasks message
       condition: tasks.isNotEmpty,
       fallback: (context) => Center(
@@ -198,11 +198,3 @@ Widget taskConditionBuilder({tasks}) => ConditionalBuilder(
       ),
     );
 
-Widget whenAddLoadTask() {
-  Future.delayed(Duration(
-    seconds: 3,
-  ),);
-  return CircularProgressIndicator(
-    color: pColor,
-  );
-}
