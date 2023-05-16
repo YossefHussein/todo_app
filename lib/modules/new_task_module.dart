@@ -4,14 +4,9 @@ import 'package:todo_app/shared/bloc/app_cubit.dart';
 import 'package:todo_app/shared/bloc/states.dart';
 import '../shared/components/components.dart';
 
-class NewTaskModule extends StatefulWidget {
+class NewTaskModule extends StatelessWidget {
   const NewTaskModule({Key? key}) : super(key: key);
 
-  @override
-  State<NewTaskModule> createState() => _NewTaskModuleState();
-}
-
-class _NewTaskModuleState extends State<NewTaskModule> {
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<AppCubit, AppState>(
