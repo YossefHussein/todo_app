@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sqflite/sqflite.dart';
+
 import 'package:todo_app/shared/translations/locale_keys.dart';
 import '../../modules/archived_task_module.dart';
 import '../../modules/done_task_module.dart';
@@ -33,18 +34,8 @@ class AppCubit extends Cubit<AppState> {
     LocaleKeys.appTitleArchivedTask,
   ];
 
-  /// tasks save here
-  // this for new screen
-  List<Map> newTasks = [];
-
-  // this for done screen
-  List<Map> doneTasks = [];
-
-  // this for archived
-  List<Map> archivedTasks = [];
-
   // this is for see bottomSheet
-  // ScaffoldState
+  // scaffoldState
   var scaffoldKey = GlobalKey<ScaffoldState>();
 
   // this use for validation
@@ -80,6 +71,16 @@ class AppCubit extends Cubit<AppState> {
     emit(AppChangeBottomNavStates());
   }
 
+  /// tasks save here
+  // this for new screen
+  List<Map> newTasks = [];
+
+  // this for done screen
+  List<Map> doneTasks = [];
+
+  // this for archived
+  List<Map> archivedTasks = [];
+
   // create database
   void createDatabase() {
     // 'todo.db' is name of database
@@ -88,9 +89,10 @@ class AppCubit extends Cubit<AppState> {
         // 'onCreate' mean create the database but this just in once
         onCreate: (database, version) {
       // 'execute'  is mean make new database
-      database.execute(
-          // important comment to understand the sqflite statement
-          /*
+      database
+          .execute(
+        // important comment to understand the sqflite statement
+        /*
            1. (primary key) is thing auto generator when add to table
               because "id" you don't created all once you adding thing to database.
            2. in sqflite no there String it's replace to TEXT,
@@ -99,7 +101,8 @@ class AppCubit extends Cubit<AppState> {
            4. you write title , title is name of field after you write type of field,
               so it writing like this (name.field type.field).
           */
-          'CREATE TABLE task (id INTEGER PRIMARY KEY,title TEXT , date TEXT , time TEXT , status TEXT )').then(
+        'CREATE TABLE task (id INTEGER PRIMARY KEY,title TEXT , date TEXT , time TEXT , status TEXT )',
+      ).then(
         (value) {
           print('database created');
         },

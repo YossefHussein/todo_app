@@ -6,17 +6,24 @@ import '../shared/bloc/app_cubit.dart';
 import '../shared/bloc/states.dart';
 import '../shared/components/components.dart';
 
-class ArchivedTaskModule extends StatelessWidget {
+class ArchivedTaskModule extends StatefulWidget {
   const ArchivedTaskModule({Key? key}) : super(key: key);
 
+  @override
+  State<ArchivedTaskModule> createState() => _ArchivedTaskModuleState();
+}
+
+class _ArchivedTaskModuleState extends State<ArchivedTaskModule> {
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<AppCubit, AppState>(
       listener: (context, state) {},
       builder: (context, state) {
-        // for see on archivedTasks
-        var tasks = AppCubit.get(context).archivedTasks;
-        return taskConditionBuilder(tasks: tasks);
+        return Scaffold(
+          body: taskConditionBuilder(
+            tasks: AppCubit.get(context).archivedTasks,
+          ),
+        );
       },
     );
   }

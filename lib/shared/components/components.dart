@@ -6,6 +6,48 @@ import '../styles/color.dart';
 import '../translations/locale_keys.dart';
 import 'constant.dart';
 
+/// this is default formField in my application
+Widget defaultFormField({
+  // this to get and set information form textFormField
+  required TextEditingController controller,
+  // label of textFormField
+  required String label,
+  // String? helper,
+  bool isPassword = false,
+  // that is validation message
+  required FormFieldValidator<String> validMsg,
+  // type of textFormField
+  required TextInputType type,
+  // this  icon
+  required Widget prefixIcon,
+  // when click on textFormField
+  required Function()? onTap,
+  // this when click
+  bool? disableKeyBoard = false,
+}) {
+  return TextFormField(
+    showCursor: disableKeyBoard,
+    readOnly: disableKeyBoard!,
+    controller: controller,
+    keyboardType: type,
+    obscureText: isPassword,
+    onTap: () {
+      onTap!();
+    },
+    decoration: InputDecoration(
+      prefixIcon: prefixIcon,
+      labelText: label,
+      border: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(20),
+      ),
+    ),
+    validator: validMsg,
+  );
+}
+
+
+
+
 /// to make task item
 Widget buildTaskItem({
   required int taskNumber,
@@ -121,44 +163,8 @@ Widget buildTaskItem({
       ),
     );
 
-/// this is default formField in my application
-TextFormField defaultFormField({
-  // this to get and set information form textFormField
-  required TextEditingController controller,
-  // label of textFormField
-  required String label,
-  // String? helper,
-  bool isPassword = false,
-  // that is validation message
-  required FormFieldValidator<String> validMsg,
-  // type of textFormField
-  required TextInputType type,
-  // this  icon
-  required Widget prefixIcon,
-  // when click on textFormField
-  required Function()? onTap,
-  // this when click
-  bool? disableKeyBoard = false,
-}) {
-  return TextFormField(
-    showCursor: disableKeyBoard,
-    readOnly: disableKeyBoard!,
-    controller: controller,
-    keyboardType: type,
-    obscureText: isPassword,
-    onTap: () {
-      onTap!();
-    },
-    decoration: InputDecoration(
-      prefixIcon: prefixIcon,
-      labelText: label,
-      border: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(20),
-      ),
-    ),
-    validator: validMsg,
-  );
-}
+
+
 
 Widget taskConditionBuilder({required List<Map> tasks}) => ConditionalBuilder(
       // if the tasks under zero see no tasks message
@@ -197,4 +203,3 @@ Widget taskConditionBuilder({required List<Map> tasks}) => ConditionalBuilder(
         itemCount: tasks.length,
       ),
     );
-

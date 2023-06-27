@@ -15,5 +15,4 @@ abstract class  LocaleKeys {
   static const doneTaskBottomNav = 'doneTaskBottomNav';
   static const archivedTaskBottomNav = 'archivedTaskBottomNav';
   static const noTasksYet = 'noTasksYet';
-
 }

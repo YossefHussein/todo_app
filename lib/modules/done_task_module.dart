@@ -5,17 +5,20 @@ import 'package:todo_app/shared/bloc/states.dart';
 import '../shared/bloc/app_cubit.dart';
 import '../shared/components/components.dart';
 
-class DoneTaskModule extends StatelessWidget {
+class DoneTaskModule extends StatefulWidget {
   const DoneTaskModule({Key? key}) : super(key: key);
 
+  @override
+  State<DoneTaskModule> createState() => _DoneTaskModuleState();
+}
+
+class _DoneTaskModuleState extends State<DoneTaskModule> {
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<AppCubit, AppState>(
       listener: (context, state) {},
       builder: (context, state) {
-        // for see on doneTasks
-        var tasks = AppCubit.get(context).doneTasks;
-        return taskConditionBuilder(tasks:tasks);
+        return Scaffold(body: taskConditionBuilder(tasks:AppCubit.get(context).doneTasks,),);
       },
     );
   }
